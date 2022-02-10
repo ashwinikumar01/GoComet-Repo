@@ -7,10 +7,14 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsListComponent } from './products-list/products-list.component';
-import { ProductDetailsComponent } from './product-details/product-details.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, HomeComponent, ProductsListComponent, ProductDetailsComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    HomeComponent,
+    ProductsListComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],

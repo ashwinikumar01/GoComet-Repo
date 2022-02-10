@@ -1,9 +1,9 @@
 {
-  "/products": {
+  "/api": {
     "target": "http://localhost:3000",
     "secure": false
   },
-  "/products/id": {
+  "/api/id": {
     "target": "http://localhost:3000",
     "secure": false
   }
