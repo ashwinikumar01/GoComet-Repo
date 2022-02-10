@@ -1,0 +1,8 @@
+<h2 *ngIf="isLoading" class="container text-center mt-5">LOADING....</h2>
+<div
+  *ngIf="!isLoading"
+  class="conatiner text-center"
+  style="margin-top: 120px;"
+>
+  <p>{{ product.id }}</p>
+</div>
