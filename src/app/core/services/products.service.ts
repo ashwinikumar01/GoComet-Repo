@@ -13,12 +13,12 @@ export class ProductsService {
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<Product[]> {
-    const url = this.url + '/api';
+    const url = this.url;
     return this.http.get<Product[]>(url);
   }
 
   getProduct(productId: number): Observable<Product> {
-    const url = this.url + '/api/' + productId;
+    const url = this.url + '/' + productId;
     return this.http.get<Product>(url);
   }
 }

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000'
+  apiUrl: 'https://gocomet-fake-server.herokuapp.com/products',
 };
 
 /*
