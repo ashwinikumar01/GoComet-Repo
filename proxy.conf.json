@@ -1,10 +1,10 @@
 {
   "/api": {
-    "target": "https://gocomet-task-url.herokuapp.com/",
+    "target": "http://localhost:3000",
     "secure": false
   },
   "/api/id": {
-    "target": "https://gocomet-task-url.herokuapp.com/",
+    "target": "http://localhost:3000",
     "secure": false
   }
 }

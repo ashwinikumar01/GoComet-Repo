@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://gocomet-task-url.herokuapp.com/',
+  apiUrl: 'http://localhost:3000'
 };

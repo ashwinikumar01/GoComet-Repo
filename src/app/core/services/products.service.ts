@@ -8,15 +8,17 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class ProductsService {
-  private _url = environment.apiUrl;
+  url = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this._url}/api`);
+    const url = this.url + '/api';
+    return this.http.get<Product[]>(url);
   }
 
   getProduct(productId: number): Observable<Product> {
-    return this.http.get<Product>(`${this._url}/api/${productId}`);
+    const url = this.url + '/api/' + productId;
+    return this.http.get<Product>(url);
   }
 }

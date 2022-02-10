@@ -11,7 +11,7 @@
     "mock:server": "json-server mock-data/data.json",
     "start:proxy": "ng serve --proxy-config proxy.conf.json",
     "start:proxy:mock:server": "concurrently - kill-others \"npm run mock:server\" \"npm run start:proxy\"",
-    "postinstall": "ng build --output-path dist"
+    "heroku-postbuild": "ng build --prod"
   },
   "private": true,
   "engines": {
@@ -50,6 +50,7 @@
     "concurrently": "^7.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
+    "json-server": "^0.17.0",
     "karma": "~5.2.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.0.3",
