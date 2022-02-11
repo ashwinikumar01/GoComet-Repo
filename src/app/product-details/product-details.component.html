@@ -1,4 +1,5 @@
-<h2 *ngIf="isLoading" class="container text-center mt-5">LOADING....</h2>
+<app-loader *ngIf="isLoading"></app-loader>
+
 <div
   *ngIf="!isLoading"
   class="conatiner text-center"

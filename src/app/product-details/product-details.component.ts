@@ -14,7 +14,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   product: Product;
   productId: number;
   endsubs$: Subject<any> = new Subject();
-  isLoading: boolean;
+  isLoading = false;
 
   constructor(
     private productService: ProductsService,

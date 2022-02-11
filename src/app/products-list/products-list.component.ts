@@ -9,6 +9,8 @@ import { Product } from '../models/product';
 })
 export class ProductsListComponent implements OnInit {
   products: Product[] = [];
+  isLoading = false;
+
   constructor(private apiService: ProductsService) {}
 
   ngOnInit(): void {
@@ -16,7 +18,9 @@ export class ProductsListComponent implements OnInit {
   }
 
   _getProducts() {
+    this.isLoading = true;
     this.apiService.getProducts().subscribe((res: any) => {
+      this.isLoading = false;
       this.products = res;
     });
   }
