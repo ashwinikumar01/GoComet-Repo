@@ -20,6 +20,7 @@ const routes: Routes = [
         (m) => m.ProductDetailsModule
       ),
   },
+  { path: 'cart', loadChildren: () => import('./cart/cart.module').then(m => m.CartModule) },
 ];
 
 @NgModule({

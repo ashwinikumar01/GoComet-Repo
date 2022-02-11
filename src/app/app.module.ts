@@ -8,7 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule } from '@angular/forms';
-import { CartService } from './core';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, ProductsListComponent],
@@ -21,8 +20,4 @@ import { CartService } from './core';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-  constructor(private cartService: CartService) {
-    this.cartService.initCartLocalStorage();
-  }
-}
+export class AppModule {}
