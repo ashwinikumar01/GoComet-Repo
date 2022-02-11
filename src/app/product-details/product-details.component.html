@@ -1,9 +1,62 @@
 <app-loader *ngIf="isLoading"></app-loader>
 
-<div
-  *ngIf="!isLoading"
-  class="conatiner text-center"
-  style="margin-top: 120px;"
->
-  <p>{{ product.id }}</p>
+<div class="container" *ngIf="!isLoading">
+  <div class="col-md-12 mt-5">
+    <div class="row">
+      <div class="card-body col-lg-1">
+        <!-- <div class="col-lg-1" *ngFor="let image of sideImages">
+          <img
+            class="mt-1 middle"
+            [src]="image.img"
+            (click)="sideImage(image.img)"
+          />
+        </div> -->
+      </div>
+      <div class="col-md-4 col-lg-4">
+        <img class="img-fluid" [src]="(product?.images)[0]" />
+      </div>
+      <div class="mt-3 col-md-8 col-lg-7">
+        <h5>{{ product?.name }}</h5>
+        <div class="mt-4">
+          <span class="title-description">Price:</span>
+          <span style="font-size: 16px; color: darkred;">
+            {{ product?.price | currency }}
+          </span>
+        </div>
+        <div>
+          <span class="title-description">Selected Memory :</span>
+          <b>{{ selectedMemory }}GB</b>
+        </div>
+        <div class="mt-2" style="margin-left: -3px;">
+          <button
+            type="button"
+            class="btn ml-1"
+            style="border-color: grey; font-weight: bold;"
+            *ngFor="let memorySize of product?.memory"
+            (click)="getSelectedMemorySize(memorySize.size)"
+          >
+            {{ memorySize.size }}GB
+          </button>
+        </div>
+        <div>
+          <span class="title-description">Specification:</span>
+          <ul class="description">
+            <li>{{ product?.display }}</li>
+            <li>{{ product?.waterResistant }}</li>
+            <li>{{ product?.camera }}</li>
+            <li>{{ product?.frontCamera }}</li>
+            <li>{{ product?.futures }}</li>
+            <li>{{ product?.processor }}</li>
+            <li>{{ product?.charging }}</li>
+          </ul>
+          <div class="mt-2">
+            <button class="btn btn-success" (click)="addToCart()">
+              <i class="fa fa-shopping-cart"></i>
+              Add to cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

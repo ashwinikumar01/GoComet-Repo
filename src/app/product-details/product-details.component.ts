@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { ProductsService } from '../core';
+import { CartService, ProductsService } from '../core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Product } from '../models/product';
+import { CartItem } from '../models/cart';
 
 @Component({
   selector: 'app-product-details',
@@ -15,9 +16,11 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   productId: number;
   endsubs$: Subject<any> = new Subject();
   isLoading = false;
+  selectedMemory: number;
 
   constructor(
     private productService: ProductsService,
+    private cartService: CartService,
     private route: ActivatedRoute
   ) {}
 
@@ -35,10 +38,30 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     this.productService
       .getProduct(id)
       .pipe(takeUntil(this.endsubs$))
-      .subscribe((resProduct) => {
+      .subscribe((resProduct: any) => {
         this.isLoading = false;
         this.product = resProduct;
+        this.selectedMemory = resProduct.memory[0].size;
       });
+  }
+
+  getSelectedMemorySize(memorySize: number): number {
+    this.selectedMemory = memorySize;
+    return this.selectedMemory;
+  }
+
+  addToCart() {
+    const cartItem: CartItem = {
+      id: this.product.id,
+      productDetails: [
+        {
+          quantity: 1,
+          size: this.selectedMemory,
+        },
+      ],
+    };
+
+    this.cartService.setCartItem(cartItem, this.selectedMemory);
   }
 
   ngOnDestroy(): void {

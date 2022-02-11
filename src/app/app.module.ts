@@ -7,10 +7,22 @@ import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { SharedModule } from './shared/shared.module';
+import { FormsModule } from '@angular/forms';
+import { CartService } from './core';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, ProductsListComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, SharedModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    SharedModule,
+  ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private cartService: CartService) {
+    this.cartService.initCartLocalStorage();
+  }
+}
