@@ -32,14 +32,18 @@ export class CartService {
   setCartItem(cartItem: CartItem, memorySize: number): Cart {
     const cart: Cart = this.getCart();
     const cartItemExist = cart.items.find((item) => item.id === cartItem.id);
+
     if (cartItemExist) {
       cart.items.map((item: CartItem) => {
-        const sameMemoryItemExist = item.productDetails.find((i: ProductDetails) => i.size === memorySize);
+        const sameMemoryItemExist = item.productDetails.find(
+          (i: ProductDetails) => i.size === memorySize
+        );
+
         if (item.id === cartItem.id) {
           if (sameMemoryItemExist) {
             item.productDetails.map((i: ProductDetails) => {
-              cartItem.productDetails.map((val: ProductDetails) => {
-                i.quantity += val.quantity;
+              cartItem.productDetails.forEach((val: ProductDetails) => {
+                if (val.size === i.size) i.quantity = i.quantity + val.quantity;
               });
             });
           } else {
@@ -51,6 +55,7 @@ export class CartService {
             });
           }
         }
+
         return item;
       });
     } else {
@@ -63,9 +68,20 @@ export class CartService {
     return cart;
   }
 
-  deleteCartItem(id: number) {
+  deleteCartItem(id: number, memorySize: number) {
     const cart = this.getCart();
-    const newCart = cart.items.filter((item) => item.id !== id);
+    const newCart = cart.items.filter((item: CartItem) => {
+      console.log(
+        item.productDetails.filter(
+          (prodDetails: ProductDetails) =>
+            prodDetails.size !== memorySize && item.id !== id
+        )
+      );
+      // item.productDetails.filter(
+      //   (prodDetails: ProductDetails) =>
+      //     prodDetails.size !== memorySize && item.id !== id
+      // );
+    });
 
     cart.items = newCart;
 

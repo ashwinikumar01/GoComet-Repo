@@ -4,10 +4,15 @@ export class Cart {
 
 export class CartItem {
   id?: number;
-  productDetails: ProductDetails[];
+  productDetails?: ProductDetails[];
 }
 
 export class ProductDetails {
   quantity?: number;
   size?: number;
+}
+
+export class CartItemDetailed {
+  product?: any;
+  productDetails?: ProductDetails;
 }

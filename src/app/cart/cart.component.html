@@ -1,0 +1,8 @@
+<div class="cart-item mb-5" *ngFor="let cartItem of cartItemsDetailed">
+  {{ cartItem?.product.name }}
+  <h3> {{ cartItem?.productDetails?.size }}</h3>
+  <h3> {{ cartItem?.productDetails?.quantity }}</h3>
+  <button
+  (click)="deleteCartItem(cartItem, cartItem.productDetails.size)"
+>Delete</button>
+</div>
