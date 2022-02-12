@@ -10,6 +10,7 @@ import { Product } from '../models/product';
 export class ProductsListComponent implements OnInit {
   products: Product[] = [];
   isLoading = false;
+  searchText: string = '';
 
   constructor(private apiService: ProductsService) {}
 

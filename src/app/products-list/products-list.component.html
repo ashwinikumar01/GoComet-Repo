@@ -3,6 +3,29 @@
 <div *ngIf="!isLoading">
   <div class="text-center">
     <h2>Products List</h2>
+
+    <div class="col-xl-12">
+      <div class="form-group row">
+        <label
+          for="textSearchText"
+          class="col-form-label col-md-6 col-lg-2 col-xl-1 text-right"
+        >
+          Search:
+        </label>
+
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              id="txtSearchText"
+              name="SearchText"
+              [(ngModel)]="searchText"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="row">
     <div class="col-md-2 d-md-block d-none">
@@ -10,7 +33,10 @@
     </div>
     <div class="col-md-10">
       <div class="row">
-        <div class="col-lg-3 col-md-6 mb-4" *ngFor="let product of products">
+        <div
+          class="col-lg-3 col-md-6 mb-4"
+          *ngFor="let product of products | filter: searchText"
+        >
           <div class="card" [routerLink]="'/products-list/' + product?.id">
             <img
               class="card-img-top"

@@ -14,15 +14,14 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartService.cart$.subscribe((cart) => {
-      cart?.items?.forEach((cartItem: CartItem) => {
-        cartItem?.productDetails?.forEach((item: ProductDetails) => {
-          if (item?.size) {
-            this.cartCount = item?.quantity;
-          } else {
-            this.cartCount = this.cartCount + item?.quantity;
-          }
-        });
-      });
+      this.cartCount = cart?.items?.length ?? 0;
+      // cart?.items?.forEach((cartItem: CartItem) => {
+      //   const cartCount = cartItem.productDetails.reduce((acc, item: any) => {
+      //     return acc + item.quantity;
+      //   }, 0);
+
+      //   console.log(cartCount);
+      // });
     });
   }
 }

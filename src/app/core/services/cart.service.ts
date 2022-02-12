@@ -70,18 +70,9 @@ export class CartService {
 
   deleteCartItem(id: number, memorySize: number) {
     const cart = this.getCart();
-    const newCart = cart.items.filter((item: CartItem) => {
-      console.log(
-        item.productDetails.filter(
-          (prodDetails: ProductDetails) =>
-            prodDetails.size !== memorySize && item.id !== id
-        )
-      );
-      // item.productDetails.filter(
-      //   (prodDetails: ProductDetails) =>
-      //     prodDetails.size !== memorySize && item.id !== id
-      // );
-    });
+    const newCart = cart.items.filter(
+      (itemInCart: CartItem) => itemInCart.id !== id
+    );
 
     cart.items = newCart;
 
