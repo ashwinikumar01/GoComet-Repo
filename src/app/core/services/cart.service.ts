@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { Cart, CartItem, ProductDetails } from 'src/app/models/cart';
+import { Cart, CartItem } from 'src/app/models/cart';
 
 export const CART_KEY = 'cart';
 
@@ -29,35 +29,14 @@ export class CartService {
     return cart;
   }
 
-  setCartItem(cartItem: CartItem, memorySize: number): Cart {
+  setCartItem(cartItem: CartItem): Cart {
     const cart: Cart = this.getCart();
-    const cartItemExist = cart.items.find((item) => item.id === cartItem.id);
+    const cartItemIndex = cart.items.findIndex(
+      (item) => item.id === cartItem.id && item.sizeId === cartItem.sizeId
+    );
 
-    if (cartItemExist) {
-      cart.items.map((item: CartItem) => {
-        const sameMemoryItemExist = item.productDetails.find(
-          (i: ProductDetails) => i.size === memorySize
-        );
-
-        if (item.id === cartItem.id) {
-          if (sameMemoryItemExist) {
-            item.productDetails.map((i: ProductDetails) => {
-              cartItem.productDetails.forEach((val: ProductDetails) => {
-                if (val.size === i.size) i.quantity = i.quantity + val.quantity;
-              });
-            });
-          } else {
-            cart.items.map((updatedCartItem: CartItem) => {
-              updatedCartItem.productDetails.push({
-                quantity: 1,
-                size: memorySize,
-              });
-            });
-          }
-        }
-
-        return item;
-      });
+    if (cartItemIndex !== -1) {
+      cart.items[cartItemIndex].quantity += cartItem.quantity;
     } else {
       cart.items.push(cartItem);
     }
@@ -68,17 +47,18 @@ export class CartService {
     return cart;
   }
 
-  deleteCartItem(id: number, memorySize: number) {
+  deleteCartItem(id: number, memorySizeId: number) {
     const cart = this.getCart();
-    const newCart = cart.items.filter(
-      (itemInCart: CartItem) => itemInCart.id !== id
-    );
-
-    cart.items = newCart;
-
-    const cartJsonString = JSON.stringify(cart);
-    localStorage.setItem('cart', cartJsonString);
-
-    this.cart$.next(cart);
+    // const newCart = cart.items.filter(
+    //   (itemInCart: CartItem) => {
+    //     itemInCart.productDetails.filter((item: ProductDetails) => {
+    //       if(itemInCart.id !== id && item.sizeId === memorySizeId)
+    //     })
+    //   }
+    // );
+    // cart.items = newCart;
+    // const cartJsonString = JSON.stringify(cart);
+    // localStorage.setItem('cart', cartJsonString);
+    // this.cart$.next(cart);
   }
 }

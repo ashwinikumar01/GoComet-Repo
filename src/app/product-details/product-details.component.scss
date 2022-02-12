@@ -1,3 +1,176 @@
-ul {
-  list-style: none;
+.productDetails {
+  width: 100%;
+  height: 100%;
+}
+
+.mainSection {
+  width: 80%;
+  align-content: center;
+}
+
+.sys {
+  line-height: 28px;
+}
+
+.pic0 {
+  width: 95%;
+  height: 500px;
+  display: block;
+}
+
+.fit-image {
+  width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.tb {
+  border: 1px solid grey;
+  margin: 2px;
+  opacity: 0.4;
+  cursor: pointer;
+}
+
+.tb-active {
+  opacity: 1;
+}
+
+.thumbnail-img {
+  width: 60px;
+  height: 50px;
+}
+
+img {
+  background-repeat: no-repeat;
+}
+
+.other {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.product-title {
+  color: #090b45;
+  text-transform: uppercase;
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.product-description {
+  color: #8c97a5;
+  font-weight: normal;
+  font-size: 0.9rem;
+}
+
+p {
+  color: #090b45;
+  font-size: 0.9rem;
+  line-height: 28px;
+}
+
+h1 {
+  width: 100%;
+  height: 1px;
+  margin-top: 0.8rem;
+  background-color: #b6bbc0;
+}
+
+h5 {
+  color: #090b45;
+  font-weight: bolder;
+}
+
+.buy {
+  background-color: rgb(17, 189, 17);
+  color: white;
+  font-weight: bold;
+  border-radius: 0.3rem;
+  font-size: 0.9rem;
+  -webkit-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+.buy:hover {
+  background-color: rgb(26, 167, 26);
+  -webkit-transform: translateY(-0.5px);
+  -ms-transform: translateY(-0.5px);
+  transform: translateY(-0.5px);
+}
+
+li {
+  font-weight: normal;
+  text-align: justify;
+  font-size: 0.9rem;
+  color: #8c97a5;
+}
+
+h6 {
+  font-size: 1.2rem;
+  color: #090b45;
+}
+
+@media only screen and (max-width: 575.6px) {
+  ul {
+    padding: 0 23px 0 20px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .pic0 {
+    width: 85%;
+    height: 430px;
+    display: block;
+  }
+  .mainSection {
+    width: 80%;
+    align-content: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .pic0 {
+    width: 90%;
+    height: 300px;
+    display: block;
+  }
+  .product-title {
+    color: #090b45;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    text-align: center;
+    font-weight: 700;
+  }
+  .mainSection {
+    width: 80%;
+    align-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .pic0 {
+    width: 100%;
+    height: 230px;
+    display: block;
+  }
+  .product-title {
+    color: #090b45;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 700;
+  }
+  .mainSection {
+    width: 98%;
+    align-content: center;
+  }
+}
+
+.feature-title {
+  color: #090b45;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  font-weight: 700;
 }

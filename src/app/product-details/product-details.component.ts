@@ -17,6 +17,9 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   endsubs$: Subject<any> = new Subject();
   isLoading = false;
   selectedMemory: number;
+  selectedMemoryId: number;
+  image: string;
+  imagesList = [];
 
   constructor(
     private productService: ProductsService,
@@ -38,30 +41,33 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     this.productService
       .getProduct(id)
       .pipe(takeUntil(this.endsubs$))
-      .subscribe((resProduct: any) => {
+      .subscribe((resProduct: Product) => {
         this.isLoading = false;
         this.product = resProduct;
         this.selectedMemory = resProduct.memory[0].size;
+        this.selectedMemoryId = resProduct.memory[0].sizeId;
+        this.image = resProduct.images[0];
+        this.imagesList = resProduct.images;
       });
   }
 
-  getSelectedMemorySize(memorySize: number): number {
-    this.selectedMemory = memorySize;
-    return this.selectedMemory;
+  getSelectedMemorySize(index: number) {
+    this.selectedMemoryId = this.product.memory[index].sizeId;
+    this.selectedMemory = this.product.memory[index].size;
   }
 
   addToCart() {
     const cartItem: CartItem = {
       id: this.product.id,
-      productDetails: [
-        {
-          quantity: 1,
-          size: this.selectedMemory,
-        },
-      ],
+      quantity: 1,
+      sizeId: this.selectedMemoryId,
     };
 
-    this.cartService.setCartItem(cartItem, this.selectedMemory);
+    this.cartService.setCartItem(cartItem);
+  }
+
+  onHoverImage(index: number) {
+    this.image = this.imagesList[index];
   }
 
   ngOnDestroy(): void {

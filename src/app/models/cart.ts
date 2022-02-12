@@ -4,15 +4,11 @@ export class Cart {
 
 export class CartItem {
   id?: number;
-  productDetails?: ProductDetails[];
-}
-
-export class ProductDetails {
+  sizeId?: number;
   quantity?: number;
-  size?: number;
 }
 
-export class CartItemDetailed {
-  product?: any;
-  productDetails?: ProductDetails;
-}
+// export class CartItemDetailed {
+//   product?: any;
+//   productDetails?: ProductDetails;
+// }
