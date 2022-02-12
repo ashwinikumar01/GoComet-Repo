@@ -9,6 +9,7 @@ import { ProductsListComponent } from './products-list/products-list.component';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from './pipes/filter.pipe';
+import { SortPipe } from './pipes/sort.pipe';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     HomeComponent,
     ProductsListComponent,
     FilterPipe,
+    SortPipe,
   ],
   imports: [
     BrowserModule,

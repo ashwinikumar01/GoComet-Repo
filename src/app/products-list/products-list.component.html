@@ -1,41 +1,53 @@
 <app-loader *ngIf="isLoading"></app-loader>
 
 <div *ngIf="!isLoading">
-  <div class="text-center">
-    <h2>Products List</h2>
-
-    <div class="col-xl-12">
-      <div class="form-group row">
-        <label
-          for="textSearchText"
-          class="col-form-label col-md-6 col-lg-2 col-xl-1 text-right"
-        >
-          Search:
-        </label>
-
-        <div class="col-md-6 col-lg-4 col-xl-3">
-          <div class="input-group">
-            <input
-              type="text"
-              class="form-control"
-              id="txtSearchText"
-              name="SearchText"
-              [(ngModel)]="searchText"
-            />
-          </div>
+  <div class="row mt-5">
+    <div class="col-md-4 offset-md-4">
+      <input
+        type="text"
+        class="form-control"
+        id="textSearchText"
+        name="textSearch"
+        placeholder="Search for your product..."
+        [(ngModel)]="searchText"
+      />
+    </div>
+    <div class="col-md-4">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" id="searchField" for="drpFilterBy">
+            Sort by
+          </label>
         </div>
+        <select
+          class="form-control"
+          id="drpFilterBy"
+          [(ngModel)]="sortBy"
+          aria-describedby="searchField"
+        >
+          <option value="name">Name</option>
+          <option value="price">
+            Low to High Price
+          </option>
+        </select>
       </div>
     </div>
   </div>
-  <div class="row">
+
+  <div class="row mt-5">
     <div class="col-md-2 d-md-block d-none">
       <h5>Filters</h5>
     </div>
+
     <div class="col-md-10">
       <div class="row">
         <div
           class="col-lg-3 col-md-6 mb-4"
-          *ngFor="let product of products | filter: searchText"
+          *ngFor="
+            let product of products
+              | filter: searchText
+              | sort: true:sortDirection:sortBy
+          "
         >
           <div class="card" [routerLink]="'/products-list/' + product?.id">
             <img
@@ -43,12 +55,18 @@
               [src]="product.images[0]"
               [alt]="product.name"
             />
-            <div class="card-body">
-              <h5 class="card-title">{{ product.name }}</h5>
-              <p class="card-text">
-                {{ product.processor }}
-              </p>
-              <a class="btn btn-primary">Go to id {{ product.id }}</a>
+            <div class="card-body text-center">
+              <h2 class="h2">
+                {{ product.name }}
+              </h2>
+              <div class="px-2">
+                <p class="p-text">
+                  {{ product.processor }}
+                </p>
+                <div class="card-text marketing-tag mb-1 mt-2">
+                  {{ product.price | currency }}
+                </div>
+              </div>
             </div>
           </div>
         </div>

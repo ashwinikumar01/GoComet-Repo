@@ -10,7 +10,10 @@ import { Product } from '../models/product';
 export class ProductsListComponent implements OnInit {
   products: Product[] = [];
   isLoading = false;
+
   searchText: string = '';
+  sortBy: any = 'name';
+  sortDirection: any = 'asc';
 
   constructor(private apiService: ProductsService) {}
 
@@ -20,9 +23,9 @@ export class ProductsListComponent implements OnInit {
 
   _getProducts() {
     this.isLoading = true;
-    this.apiService.getProducts().subscribe((res: any) => {
+    this.apiService.getProducts().subscribe((respone: any) => {
       this.isLoading = false;
-      this.products = res;
+      this.products = respone;
     });
   }
 }
