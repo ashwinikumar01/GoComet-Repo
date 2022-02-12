@@ -5,3 +5,51 @@
   <button
 >Delete</button>
 </div> -->
+
+<button
+  type="button"
+  id="hiddenBtn"
+  class="btn"
+  data-toggle="modal"
+  data-target="#exampleModal"
+  [hidden]="true"
+>
+  MAIL REPORT
+</button>
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-none">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-0">
+        <div class="crop">
+          <img src="../../assets/Img/newImg/greenTick.jpg" width="100%" />
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <h2>Order Confirmed</h2>
+      <p class="text-center">
+        <small class="text-muted">Thank you for your subscription</small>
+      </p>
+      <!-- <div class="d-flex justify-content-center"> <button type="button" class="okay btn">ok</button>
+              <p class="setting"><small><strong><u>Setting</u></strong></small></p>
+              <p><strong></strong></p>
+          </div> -->
+    </div>
+  </div>
+</div>

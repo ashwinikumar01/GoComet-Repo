@@ -37,10 +37,14 @@
           </div>
           <div class="col-8">
             <button
+              *ngFor="let memorySize of product?.memory; let i = index"
+              [ngStyle]="{
+                'background-color':
+                  selectedMemory === memorySize.size ? '#D3D3D3' : ''
+              }"
               type="button"
               class="btn ml-1"
               style="border-color: grey; font-weight: bold;"
-              *ngFor="let memorySize of product?.memory; let i = index"
               (click)="getSelectedMemorySize(i)"
             >
               {{ memorySize.size }}GB

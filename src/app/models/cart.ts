@@ -7,8 +7,3 @@ export class CartItem {
   sizeId?: number;
   quantity?: number;
 }
-
-// export class CartItemDetailed {
-//   product?: any;
-//   productDetails?: ProductDetails;
-// }

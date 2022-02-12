@@ -12,7 +12,8 @@ export class CartComponent implements OnInit {
   // cartItemsDetailed: CartItemDetailed[] = [];
   cartCount = 0;
   endSubs$: Subject<any> = new Subject();
-
+  element: HTMLElement;
+  
   constructor(
     private cartService: CartService,
     private productService: ProductsService
@@ -21,6 +22,12 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this._getCartDetails();
   }
+
+
+  ngAfterContentInit() {
+    this.element = document.getElementById("hiddenBtn") as HTMLElement;
+    this.element.click();
+}
 
   private _getCartDetails() {
     // this.cartService.cart$.pipe(takeUntil(this.endSubs$)).subscribe((respCart) => {
