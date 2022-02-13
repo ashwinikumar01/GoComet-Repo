@@ -26,7 +26,7 @@
           aria-describedby="searchField"
         >
           <option value="recommended">Recommended</option>
-          <option value="name">Name</option>
+          <option value="brand">Brand</option>
           <option value="price">
             Low to High Price
           </option>
@@ -54,11 +54,11 @@
             <img
               class="card-img-top"
               [src]="product.images[0]"
-              [alt]="product?.name"
+              [alt]="product?.brand"
             />
             <div class="card-body text-center">
               <h2 class="h2">
-                {{ product?.name }}
+                {{ product?.brand }}
               </h2>
               <div class="px-2">
                 <p class="p-text">

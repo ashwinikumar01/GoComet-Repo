@@ -15,7 +15,7 @@ export class FilterPipe implements PipeTransform {
 
     for (let product of products) {
       if (
-        product.name
+        product.brand
           .toLocaleLowerCase()
           .indexOf(searchText.toLocaleLowerCase()) !== -1
       ) {

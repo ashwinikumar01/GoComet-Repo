@@ -41,7 +41,7 @@
             class="cart-item mb-5"
             *ngFor="let cartItem of cartItemsDetailed"
           >
-            <h2>{{ cartItem?.product?.name }}</h2>
+            <h2>{{ cartItem?.product?.brand }}</h2>
             <button (click)="deleteCartItem(cartItem)">Delete</button>
           </div>
         </div>
