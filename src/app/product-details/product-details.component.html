@@ -26,13 +26,17 @@
         <h3 class="product-title">
           {{ product?.name }}
         </h3>
-        <p class="product-description mx-auto text-justify">
-          {{ product?.shirtType }}
-        </p>
-        <div class="row justify-content-center">
+
+        <ul id="list1" class="product-description mx-auto text-justify">
+          <li>{{ product?.shirtType }}</li>
+          <li>{{ product?.careInstruction }}</li>
+          <li>{{ product?.sleeveType }}</li>
+        </ul>
+
+        <div class="row justify-content-center align-items-center">
           <div class="col-4">
             <p class="sys">
-              Shirt Size:
+              Shirt Size :
             </p>
           </div>
           <div class="col-8">
@@ -43,8 +47,8 @@
                   selectedShirtSize === shirtSize.size ? '#D3D3D3' : ''
               }"
               type="button"
-              class="btn ml-1"
-              style="border-color: grey; font-weight: bold;"
+              class="btn btn-circular ml-2"
+              style="border-color: black; font-weight: bold; color: black;"
               (click)="getSelectedShirtSize(i)"
             >
               {{ shirtSize.size }}
@@ -86,13 +90,10 @@
         <div class="row mt-5 pr-3">
           <h5 class="feature-title pl-4">Features:</h5>
           <ul style="list-style-type: square;">
-            <li>{{ product?.careInstruction }}</li>
-            <li>{{ product?.shirtFabric }}</li>
-            <li>{{ product?.sleeveType }}</li>
             <li>{{ product?.sizeChart }}</li>
+            <li>{{ product?.shirtFabric }}</li>
             <li>{{ product?.detailedInfo }}</li>
             <li>{{ product?.chartRefer }}</li>
-            <li>{{ product?.shirtType }}</li>
           </ul>
         </div>
       </div>

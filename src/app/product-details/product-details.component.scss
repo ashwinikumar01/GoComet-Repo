@@ -178,3 +178,22 @@ h6 {
   font-size: 1.3rem;
   font-weight: 700;
 }
+
+#list1 {
+  list-style: none;
+  margin-bottom: 30px;
+}
+
+.btn-circular {
+  border-radius: 50px;
+  padding: 0;
+  min-width: 50px;
+  height: 50px;
+  text-align: center;
+  cursor: pointer;
+  color: #282c3f;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  position: relative;
+}
