@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from '../core';
+import { ProductsService, WishlistService } from '../core';
 import { Product } from '../models/product';
 
 @Component({
@@ -15,7 +15,10 @@ export class ProductsListComponent implements OnInit {
   sortBy: any = 'name';
   sortDirection: any = 'asc';
 
-  constructor(private apiService: ProductsService) {}
+  constructor(
+    private apiService: ProductsService,
+    private wishlistService: WishlistService
+  ) {}
 
   ngOnInit(): void {
     this._getProducts();
@@ -23,9 +26,21 @@ export class ProductsListComponent implements OnInit {
 
   _getProducts() {
     this.isLoading = true;
-    this.apiService.getProducts().subscribe((respone: any) => {
+    this.apiService.getProducts().subscribe((response: any) => {
+      console.log(response);
       this.isLoading = false;
-      this.products = respone;
+      this.products = response;
     });
+  }
+
+  _addToWishlist(productId: number) {
+    this.wishlistService.setToWishlist({
+      id: productId,
+      isLiked: true,
+    });
+  }
+
+  _removeFromWishlist(productId: number) {
+    this.wishlistService.removeWishlistItem(productId);
   }
 }

@@ -55,7 +55,7 @@ img {
 }
 
 .product-title {
-  color: #090b45;
+  color: black;
   text-transform: uppercase;
   font-size: 1.7rem;
   font-weight: 700;
@@ -68,7 +68,7 @@ img {
 }
 
 p {
-  color: #090b45;
+  color: black;
   font-size: 0.9rem;
   line-height: 28px;
 }
@@ -81,12 +81,12 @@ h1 {
 }
 
 h5 {
-  color: #090b45;
+  color: black;
   font-weight: bolder;
 }
 
 .buy {
-  background-color: rgb(17, 189, 17);
+  background-color: #ff3a37;
   color: white;
   font-weight: bold;
   border-radius: 0.3rem;
@@ -97,7 +97,7 @@ h5 {
 }
 
 .buy:hover {
-  background-color: rgb(26, 167, 26);
+  background-color: #ff2824;
   -webkit-transform: translateY(-0.5px);
   -ms-transform: translateY(-0.5px);
   transform: translateY(-0.5px);
@@ -112,7 +112,7 @@ li {
 
 h6 {
   font-size: 1.2rem;
-  color: #090b45;
+  color: black;
 }
 
 @media only screen and (max-width: 575.6px) {
@@ -140,7 +140,7 @@ h6 {
     display: block;
   }
   .product-title {
-    color: #090b45;
+    color: black;
     text-transform: uppercase;
     font-size: 1.7rem;
     text-align: center;
@@ -159,7 +159,7 @@ h6 {
     display: block;
   }
   .product-title {
-    color: #090b45;
+    color: black;
     text-transform: uppercase;
     font-size: 1.7rem;
     text-align: center;
@@ -173,7 +173,7 @@ h6 {
 }
 
 .feature-title {
-  color: #090b45;
+  color: black;
   text-transform: uppercase;
   font-size: 1.3rem;
   font-weight: 700;

@@ -1,19 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { CartService, ProductsService } from '../core';
+import { CartItem } from '../models/cart';
+import { CartItemDetailed } from '../models/cart-item-detailed';
+import { Product } from '../models/product';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
 })
-export class CartComponent implements OnInit {
-  // cartItemsDetailed: CartItemDetailed[] = [];
+export class CartComponent implements OnInit, AfterContentInit {
+  cartItemsDetailed: CartItemDetailed[] = [];
   cartCount = 0;
   endSubs$: Subject<any> = new Subject();
   element: HTMLElement;
-  
+
   constructor(
     private cartService: CartService,
     private productService: ProductsService
@@ -23,36 +26,34 @@ export class CartComponent implements OnInit {
     this._getCartDetails();
   }
 
-
   ngAfterContentInit() {
-    this.element = document.getElementById("hiddenBtn") as HTMLElement;
+    this.element = document.getElementById('hiddenBtn') as HTMLElement;
     this.element.click();
-}
-
-  private _getCartDetails() {
-    // this.cartService.cart$.pipe(takeUntil(this.endSubs$)).subscribe((respCart) => {
-    //     this.cartItemsDetailed = [];
-    //     this.cartCount = respCart?.items?.length ?? 0;
-    //     respCart.items.forEach((cartItem) => {
-    //         this.productService.getProduct(cartItem.id).subscribe((responseProduct) => {
-    //           cartItem.productDetails.map((item:any) => {
-    //             this.cartItemsDetailed.push({
-    //               product: responseProduct,
-    //               productDetails: {
-    //                 quantity: item.quantity,
-    //                 size: item.size,
-    //               }
-    //           });
-    //           })
-    //         });
-    //     });
-    //     console.log(this.cartItemsDetailed);
-    // });
   }
 
-  // deleteCartItem(cartItem: CartItemDetailed, memorySize: number) {
-  //   this.cartService.deleteCartItem(cartItem.product.id, memorySize);
-  // }
+  private _getCartDetails() {
+    this.cartService.cart$
+      .pipe(takeUntil(this.endSubs$))
+      .subscribe((respCart) => {
+        this.cartItemsDetailed = [];
+        this.cartCount = respCart?.items?.length ?? 0;
+        respCart?.items?.forEach((cartItem: CartItem) => {
+          this.productService
+            .getProduct(cartItem.id)
+            .subscribe((responseProduct: Product) => {
+              this.cartItemsDetailed.push({
+                product: responseProduct,
+                sizeId: cartItem.sizeId,
+                quantity: cartItem.quantity,
+              });
+            });
+        });
+      });
+  }
+
+  deleteCartItem(cartItem: CartItemDetailed) {
+    this.cartService.deleteCartItem(cartItem.product.id, cartItem.sizeId);
+  }
 
   ngOnDestroy(): void {
     this.endSubs$.next();

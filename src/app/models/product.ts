@@ -1,17 +1,17 @@
-import { Memory } from "./memory";
+import { ShirtSize } from './memory';
+
 export class Product {
   id: number;
   name?: string;
   price?: number;
   color?: string;
-  memorySize?: string;
-  display?: string;
-  waterResistant?: string;
-  camera?: string;
-  frontCamera?: string;
-  futures?: string;
-  processor?: string;
-  charging?: string;
-  memory?: Memory[];
+  shirtType?: string;
+  careInstruction?: string;
+  shirtFabric?: string;
+  sleeveType?: string;
+  sizeChart?: string;
+  detailedInfo?: string;
+  chartRefer?: string;
   images?: string[];
+  shirtSize?: ShirtSize[];
 }

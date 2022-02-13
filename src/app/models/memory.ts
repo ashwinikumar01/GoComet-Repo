@@ -1,4 +1,4 @@
-export class Memory {
+export class ShirtSize {
   size?: number;
   sizeId?: number;
 }

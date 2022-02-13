@@ -1,5 +1,5 @@
 export class CartItemDetailed {
-  id?: number;
+  product?: any;
   sizeId?: number;
   quantity?: number;
 }

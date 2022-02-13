@@ -47,18 +47,17 @@ export class CartService {
     return cart;
   }
 
-  deleteCartItem(id: number, memorySizeId: number) {
+  deleteCartItem(id: number, shirtSizeId: number) {
     const cart = this.getCart();
-    // const newCart = cart.items.filter(
-    //   (itemInCart: CartItem) => {
-    //     itemInCart.productDetails.filter((item: ProductDetails) => {
-    //       if(itemInCart.id !== id && item.sizeId === memorySizeId)
-    //     })
-    //   }
-    // );
-    // cart.items = newCart;
-    // const cartJsonString = JSON.stringify(cart);
-    // localStorage.setItem('cart', cartJsonString);
-    // this.cart$.next(cart);
+    const cartItemIndex = cart.items.findIndex(
+      (item: CartItem) => item.id === id && item.sizeId === shirtSizeId
+    );
+
+    if (cartItemIndex !== -1) cart.items.splice(cartItemIndex, 1);
+
+    const cartJson = JSON.stringify(cart);
+    localStorage.setItem(CART_KEY, cartJson);
+    this.cart$.next(cart);
+    return cart;
   }
 }

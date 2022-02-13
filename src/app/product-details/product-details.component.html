@@ -26,28 +26,28 @@
         <h3 class="product-title">
           {{ product?.name }}
         </h3>
-        <p class="product-description my-auto mx-auto py-3 text-justify">
-          {{ product.processor }}
+        <p class="product-description mx-auto text-justify">
+          {{ product?.shirtType }}
         </p>
         <div class="row justify-content-center">
           <div class="col-4">
             <p class="sys">
-              Memory Size:
+              Shirt Size:
             </p>
           </div>
           <div class="col-8">
             <button
-              *ngFor="let memorySize of product?.memory; let i = index"
+              *ngFor="let shirtSize of product?.shirtSize; let i = index"
               [ngStyle]="{
                 'background-color':
-                  selectedMemory === memorySize.size ? '#D3D3D3' : ''
+                  selectedShirtSize === shirtSize.size ? '#D3D3D3' : ''
               }"
               type="button"
               class="btn ml-1"
               style="border-color: grey; font-weight: bold;"
-              (click)="getSelectedMemorySize(i)"
+              (click)="getSelectedShirtSize(i)"
             >
-              {{ memorySize.size }}GB
+              {{ shirtSize.size }}
             </button>
           </div>
         </div>
@@ -56,7 +56,7 @@
 
         <div class="row py-3">
           <div class="col-6">
-            <h5>Total Price :</h5>
+            <h5>Product Price :</h5>
           </div>
           <div class="col-6">
             <h5 class="float-right">
@@ -68,7 +68,7 @@
         <div class="row my-auto mx-auto">
           <button
             class="btn buy btn-block"
-            [disabled]="!selectedMemory"
+            [disabled]="!selectedShirtSize"
             (click)="addToCart()"
           >
             <i class="fa fa-shopping-cart"></i>
@@ -76,16 +76,23 @@
           </button>
         </div>
 
+        <div class="row my-auto mx-auto">
+          <button class="btn buy btn-block" (click)="openCartModal()">
+            <i class="fa fa-shopping-cart"></i>
+            Go to Bag
+          </button>
+        </div>
+
         <div class="row mt-5 pr-3">
           <h5 class="feature-title pl-4">Features:</h5>
           <ul style="list-style-type: square;">
-            <li>{{ product?.display }}</li>
-            <li>{{ product?.waterResistant }}</li>
-            <li>{{ product?.camera }}</li>
-            <li>{{ product?.frontCamera }}</li>
-            <li>{{ product?.futures }}</li>
-            <li>{{ product?.processor }}</li>
-            <li>{{ product?.charging }}</li>
+            <li>{{ product?.careInstruction }}</li>
+            <li>{{ product?.shirtFabric }}</li>
+            <li>{{ product?.sleeveType }}</li>
+            <li>{{ product?.sizeChart }}</li>
+            <li>{{ product?.detailedInfo }}</li>
+            <li>{{ product?.chartRefer }}</li>
+            <li>{{ product?.shirtType }}</li>
           </ul>
         </div>
       </div>
@@ -98,7 +105,7 @@
         <tr>
           <td
             style="
-              color: #090b45;
+              color: black;
               font-size: 0.9rem;
               font-weight: 500;
               background-color: rgb(243, 241, 241);
@@ -113,7 +120,7 @@
         <tr>
           <td
             style="
-              color: #090b45;
+              color: black;
               font-size: 0.9rem;
               font-weight: 500;
               background-color: rgb(243, 241, 241);
@@ -128,7 +135,7 @@
         <tr>
           <td
             style="
-              color: #090b45;
+              color: black;
               font-size: 0.9rem;
               font-weight: 500;
               background-color: rgb(243, 241, 241);
@@ -144,3 +151,5 @@
     </table>
   </div>
 </section>
+
+<app-cart *ngIf="modelOpen"></app-cart>

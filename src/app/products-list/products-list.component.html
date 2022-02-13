@@ -53,21 +53,34 @@
             <img
               class="card-img-top"
               [src]="product.images[0]"
-              [alt]="product.name"
+              [alt]="product?.name"
             />
             <div class="card-body text-center">
               <h2 class="h2">
-                {{ product.name }}
+                {{ product?.name }}
               </h2>
               <div class="px-2">
                 <p class="p-text">
-                  {{ product.processor }}
+                  {{ product?.shirtType }}
                 </p>
                 <div class="card-text marketing-tag mb-1 mt-2">
-                  {{ product.price | currency }}
+                  {{ product?.price | currency }}
                 </div>
               </div>
             </div>
+            <button
+              class="btn btn-dark text-center"
+              (click)="_addToWishlist(product?.id)"
+            >
+              Add To wishlist
+            </button>
+            <!-- <button
+                class="btn btn-dark"
+                (click)="_removeFromWishlist(product?.id)"
+              >
+                Remove From wishlist
+              </button> -->
+            <!-- </div> -->
           </div>
         </div>
       </div>
