@@ -27,13 +27,17 @@
           {{ product?.name }}
         </h3>
 
-        <ul id="list1" class="product-description mx-auto text-justify">
-          <li>{{ product?.shirtType }}</li>
-          <li>{{ product?.careInstruction }}</li>
-          <li>{{ product?.sleeveType }}</li>
-        </ul>
+        <p class="product-description text-justify">
+          {{ product?.shirtType }}
+        </p>
+        <p class="product-description text-justify">
+          {{ product?.careInstruction }}
+        </p>
+        <p class="product-description text-justify">
+          {{ product?.sleeveType }}
+        </p>
 
-        <div class="row justify-content-center align-items-center">
+        <div class="row justify-content-center align-items-center mt-4">
           <div class="col-4">
             <p class="sys">
               Shirt Size :
@@ -69,21 +73,21 @@
           </div>
         </div>
 
-        <div class="row my-auto mx-auto">
+        <div class="row mx-auto">
           <button
             class="btn buy btn-block"
             [disabled]="!selectedShirtSize"
             (click)="addToCart()"
           >
-            <i class="fa fa-shopping-cart"></i>
-            Add to Cart
+            <i class="fa fa-shopping-bag"></i>
+            ADD TO BAG
           </button>
         </div>
 
-        <div class="row my-auto mx-auto">
+        <div class="row mx-auto mt-2">
           <button class="btn buy btn-block" (click)="openCartModal()">
-            <i class="fa fa-shopping-cart"></i>
-            Go to Bag
+            <i class="fa fa-shopping-bag"></i>
+            GO TO BAG
           </button>
         </div>
 
@@ -112,10 +116,10 @@
               background-color: rgb(243, 241, 241);
             "
           >
-            Display
+            Shirt Type
           </td>
           <td style="color: rgba(94, 94, 94, 0.733); font-size: 0.9rem;">
-            {{ product?.display }}
+            {{ product?.shirtType }}
           </td>
         </tr>
         <tr>
@@ -127,10 +131,10 @@
               background-color: rgb(243, 241, 241);
             "
           >
-            Water Resistant
+            Clothes Fabric
           </td>
           <td style="color: rgba(94, 94, 94, 0.733); font-size: 0.9rem;">
-            {{ product?.waterResistant }}
+            {{ product?.detailedInfo }}
           </td>
         </tr>
         <tr>
@@ -142,10 +146,10 @@
               background-color: rgb(243, 241, 241);
             "
           >
-            Front Camera
+            Size Chart
           </td>
           <td style="color: rgba(94, 94, 94, 0.733); font-size: 0.9rem;">
-            {{ product?.frontCamera }}
+            {{ product?.sizeChart }}
           </td>
         </tr>
       </tbody>
