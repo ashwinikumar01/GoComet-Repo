@@ -29,15 +29,19 @@ export class CartService {
     return cart;
   }
 
-  setCartItem(cartItem: CartItem): Cart {
+  setCartItem(cartItem: CartItem, updateCartItem?: boolean): Cart {
     const cart: Cart = this.getCart();
     const cartItemIndex = cart.items.findIndex(
       (item) => item.id === cartItem.id && item.sizeId === cartItem.sizeId
     );
 
-    if (cartItemIndex !== -1) {
+    if (updateCartItem) {
+      cart.items[cartItemIndex].quantity = +cartItem.quantity;
+    }
+
+    if (cartItemIndex !== -1 && !updateCartItem) {
       cart.items[cartItemIndex].quantity += cartItem.quantity;
-    } else {
+    } else if (cartItemIndex === -1 && !updateCartItem) {
       cart.items.push(cartItem);
     }
 

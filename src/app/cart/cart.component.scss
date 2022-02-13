@@ -1,6 +1,6 @@
 .modal-dialog {
-  max-width: 1000px;
-  overflow-x: hidden
+  max-width: 1100px;
+  overflow-x: hidden;
 }
 
 .payment-info {
@@ -112,4 +112,13 @@ label.radio input:checked + span {
 .fa-trash {
   cursor: pointer;
   font-size: 25px;
+}
+
+.form-control.cart-quantity {
+  width: 90px !important;
+  outline: 0 !important;
+}
+
+input {
+  box-shadow: none !important;
 }

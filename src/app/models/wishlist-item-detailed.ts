@@ -1,4 +1,6 @@
+import { Product } from "./product";
+
 export class WishlistItemDetailed {
-  id?: number;
+  product?: Product;
   isLiked?: boolean;
 }

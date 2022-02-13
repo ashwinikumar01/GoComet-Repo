@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Wishlist, WishlistItem } from 'src/app/models/wishlist';
 
 export const WISHLIST_KEY = 'isLiked';
@@ -7,6 +8,9 @@ export const WISHLIST_KEY = 'isLiked';
   providedIn: 'root',
 })
 export class WishlistService {
+  wishlist$: BehaviorSubject<Wishlist> = new BehaviorSubject(
+    this.getWishlist()
+  );
   constructor() {}
 
   initWishlistLocalStorage() {
@@ -41,6 +45,7 @@ export class WishlistService {
 
     const wishListJson = JSON.stringify(wish);
     localStorage.setItem(WISHLIST_KEY, wishListJson);
+    this.wishlist$.next(wish);
     return wish;
   }
 
@@ -54,6 +59,7 @@ export class WishlistService {
 
     const wishListJson = JSON.stringify(wish);
     localStorage.setItem(WISHLIST_KEY, wishListJson);
+    this.wishlist$.next(wish);
     return wish;
   }
 }

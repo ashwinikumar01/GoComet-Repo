@@ -1,1 +1,74 @@
-<p>wishlist works!</p>
+<section class="container mb-5">
+  <div
+    style="margin-top: 60px;"
+    class="text-center"
+    *ngIf="!wishlistItemsDetailed.length"
+  >
+    <img
+      src="https://images-folder-bucket.s3.ap-south-1.amazonaws.com/empty-cart1.png"
+    />
+    <h4 class="text-muted">Wishlist is empty</h4>
+  </div>
+
+  <div class="row" *ngIf="wishlistItemsDetailed.length > 0">
+    <div
+      class="col-sm-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 mt-5"
+      *ngFor="let wishlistItem of wishlistItemsDetailed"
+    >
+      <div class="card position-relative">
+        <div class="view zoom overlay">
+          <img
+            class="card-img-top w-100"
+            height="300"
+            [src]="(wishlistItem?.product?.images)[0]"
+            alt="Sample"
+          />
+          <a href="#!">
+            <div class="mask">
+              <img
+                height="300"
+                class="card-img-top w-100"
+                [src]="(wishlistItem?.product?.images)[0]"
+              />
+              <div class="mask rgba-black-slight"></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card-body text-center pt-4">
+          <h5>{{ wishlistItem?.product?.shirtType }}</h5>
+          <p class="mb-2 text-muted text-uppercase small">
+            {{ wishlistItem?.product?.brand }}
+          </p>
+          <hr />
+          <p>
+            <span class="mr-1">
+              <strong>{{ wishlistItem?.product?.price | currency }}</strong>
+            </span>
+          </p>
+          <button type="button" class="btn btn-primary btn-sm mr-1 mb-2">
+            <i class="fas fa-shopping-cart pr-2"></i>
+            Add to Bag
+          </button>
+          <button
+            [routerLink]="'/products-list/' + wishlistItem?.product?.id"
+            type="button"
+            class="btn btn-light btn-sm mr-1 mb-2"
+          >
+            <i class="fa fa-info-circle pr-2"></i>
+            Details
+          </button>
+        </div>
+        <a
+          (click)="deleteWishlistItem(wishlistItem)"
+          class="float-right position-absolute top-0 end-0"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="Remove from wishlist"
+        >
+          <i class="fa fa-close"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

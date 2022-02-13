@@ -78,7 +78,22 @@
                         </div>
                       </div>
                       <div class="d-flex flex-row align-items-center">
-                        <span class="d-block">{{ cartItem.quantity }}</span>
+                        <input
+                          type="number"
+                          [value]="cartItem.quantity"
+                          [id]="cartItem.id"
+                          [(ngModel)]="inputAmount"
+                          class="form-control input-number cart-quantity"
+                          min="1"
+                          (change)="
+                            updateCartItemQuantity(
+                              $event,
+                              cartItem,
+                              cartItem?.sizeId
+                            )
+                          "
+                        />
+
                         <span class="d-block ml-5 font-weight-bold">$900</span>
                         <i
                           (click)="deleteCartItem(cartItem)"
