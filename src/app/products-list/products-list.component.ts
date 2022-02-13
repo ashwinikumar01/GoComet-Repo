@@ -12,7 +12,7 @@ export class ProductsListComponent implements OnInit {
   isLoading = false;
 
   searchText: string = '';
-  sortBy: any = 'name';
+  sortBy: any = 'recommended';
   sortDirection: any = 'asc';
 
   constructor(
@@ -27,7 +27,6 @@ export class ProductsListComponent implements OnInit {
   _getProducts() {
     this.isLoading = true;
     this.apiService.getProducts().subscribe((response: any) => {
-      console.log(response);
       this.isLoading = false;
       this.products = response;
     });

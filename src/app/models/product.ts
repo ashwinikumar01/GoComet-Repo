@@ -2,7 +2,7 @@ import { ShirtSize } from './memory';
 
 export class Product {
   id: number;
-  name?: string;
+  brand?: string;
   price?: number;
   color?: string;
   shirtType?: string;
