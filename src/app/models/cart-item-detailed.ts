@@ -1,5 +1,7 @@
+import { Product } from './product';
+
 export class CartItemDetailed {
-  product?: any;
+  product?: Product;
   sizeId?: number;
   quantity?: number;
 }

@@ -1,7 +1,7 @@
 import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { CartService, ProductsService } from '../core';
+import { CartService, ProductsService, ToasterService } from '../core';
 import { CartItem } from '../models/cart';
 import { CartItemDetailed } from '../models/cart-item-detailed';
 import { Product } from '../models/product';
@@ -19,7 +19,8 @@ export class CartComponent implements OnInit, AfterContentInit {
 
   constructor(
     private cartService: CartService,
-    private productService: ProductsService
+    private productService: ProductsService,
+    private toasterService: ToasterService
   ) {}
 
   ngOnInit(): void {
@@ -36,7 +37,12 @@ export class CartComponent implements OnInit, AfterContentInit {
       .pipe(takeUntil(this.endSubs$))
       .subscribe((respCart) => {
         this.cartItemsDetailed = [];
-        this.cartCount = respCart?.items?.length ?? 0;
+        this.cartCount =
+          respCart?.items?.reduce(
+            (totalCartCount: any, currentValue: CartItem) =>
+              totalCartCount + currentValue.quantity,
+            0
+          ) ?? 0;
         respCart?.items?.forEach((cartItem: CartItem) => {
           this.productService
             .getProduct(cartItem.id)
@@ -51,8 +57,13 @@ export class CartComponent implements OnInit, AfterContentInit {
       });
   }
 
+  getShirtSize(index, sizeIndex) {
+    return this.cartItemsDetailed[index].product.shirtSize[sizeIndex - 1].size;
+  }
+
   deleteCartItem(cartItem: CartItemDetailed) {
     this.cartService.deleteCartItem(cartItem.product.id, cartItem.sizeId);
+    this.toasterService.showSuccessTopRight('Cart item has been deleted');
   }
 
   ngOnDestroy(): void {

@@ -19,7 +19,7 @@ import { ToastrModule } from 'ngx-toastr';
     HomeComponent,
     ProductsListComponent,
     FilterPipe,
-    SortPipe,
+    SortPipe
   ],
   imports: [
     BrowserModule,

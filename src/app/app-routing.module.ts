@@ -20,6 +20,11 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'wishlist',
+    loadChildren: () =>
+      import('./wishlist/wishlist.module').then((m) => m.WishlistModule),
+  },
+  {
     path: '**',
     component: HomeComponent,
   },
