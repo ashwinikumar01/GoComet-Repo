@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Wishlist, WishlistItem } from 'src/app/models/wishlist';
+import { ToasterService } from './toaster.service';
 
 export const WISHLIST_KEY = 'isLiked';
 
@@ -11,7 +12,7 @@ export class WishlistService {
   wishlist$: BehaviorSubject<Wishlist> = new BehaviorSubject(
     this.getWishlist()
   );
-  constructor() {}
+  constructor(private toasterService: ToasterService) {}
 
   initWishlistLocalStorage() {
     const wishlist: Wishlist = this.getWishlist();
@@ -41,6 +42,7 @@ export class WishlistService {
       return;
     } else {
       wish.wishlist.push(wishlistItem);
+      this.toasterService.showSuccessTopRight('Item added to wishlist');
     }
 
     const wishListJson = JSON.stringify(wish);
@@ -55,7 +57,12 @@ export class WishlistService {
       (item: WishlistItem) => item.id === id
     );
 
-    if (newWishlistIndex !== -1) wish.wishlist.splice(newWishlistIndex, 1);
+    if (newWishlistIndex !== -1) {
+      wish.wishlist.splice(newWishlistIndex, 1);
+      this.toasterService.showSuccessTopRight(
+        'Item has been removed from wishlist'
+      );
+    }
 
     const wishListJson = JSON.stringify(wish);
     localStorage.setItem(WISHLIST_KEY, wishListJson);

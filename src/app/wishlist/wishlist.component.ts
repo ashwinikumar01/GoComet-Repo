@@ -75,9 +75,6 @@ export class WishlistComponent implements OnInit, OnDestroy {
 
   deleteWishlistItem(wishlistItem: WishlistItemDetailed) {
     this.wishlistService.removeWishlistItem(wishlistItem.product.id);
-    this.toasterService.showSuccessTopRight(
-      'Item has been removed from wishlist'
-    );
   }
 
   triggerModal(content) {
