@@ -30,6 +30,15 @@
           <option value="price">
             Low to High Price
           </option>
+          <option value="popularity">
+            Popularity
+          </option>
+          <option value="betterDiscount">
+            Better Discount
+          </option>
+          <option value="customerRating">
+            Customer Rating
+          </option>
         </select>
       </div>
     </div>
@@ -38,6 +47,17 @@
   <div class="row mt-5">
     <div class="col-md-2 d-md-block d-none">
       <h5>Filters</h5>
+      <!-- <label *ngFor="let brand of brands">
+        <input
+          id="a"
+          class="checkbox"
+          type="checkbox"
+          name="categories"
+          [value]="brand"
+          (change)="onCheckboxClicked()"
+        />
+        {{ brand }}
+      </label> -->
     </div>
 
     <div class="col-md-10">

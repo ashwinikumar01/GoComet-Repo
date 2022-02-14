@@ -10,10 +10,11 @@ import { Product } from '../models/product';
 export class ProductsListComponent implements OnInit {
   products: Product[] = [];
   isLoading = false;
-
   searchText: string = '';
   sortBy: any = 'recommended';
   sortDirection: any = 'asc';
+
+  // brand = '';
 
   constructor(
     private apiService: ProductsService,
@@ -31,6 +32,8 @@ export class ProductsListComponent implements OnInit {
       this.products = response;
     });
   }
+
+  onCheckboxClicked() {}
 
   _addToWishlist(productId: number) {
     this.wishlistService.setToWishlist({
