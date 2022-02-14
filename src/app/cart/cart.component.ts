@@ -75,6 +75,7 @@ export class CartComponent implements OnInit {
   }
 
   deleteCartItem(cartItem: CartItemDetailed) {
+    this.totalAmount = 0;
     this.cartService.deleteCartItem(cartItem.product.id, cartItem.sizeId);
     this.toasterService.showSuccessTopRight('Cart item has been deleted');
   }
