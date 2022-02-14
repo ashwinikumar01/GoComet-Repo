@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -17,7 +17,7 @@ export class CartComponent implements OnInit {
   cartCount = 0;
   inputAmount: number = 1;
   endSubs$: Subject<any> = new Subject();
-  element: HTMLElement;
+  totalAmount = 0;
 
   constructor(
     private cartService: CartService,
@@ -46,6 +46,7 @@ export class CartComponent implements OnInit {
             .getProduct(cartItem.id)
             .subscribe((responseProduct: Product) => {
               this.inputAmount = cartItem.quantity;
+              this.totalAmount += cartItem.quantity * responseProduct.price;
               this.cartItemsDetailed.push({
                 product: responseProduct,
                 sizeId: cartItem.sizeId,
