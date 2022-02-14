@@ -12,7 +12,7 @@
 <div class="modal-body">
   <div class="container rounded cart">
     <div class="row no-gutters">
-      <div class="col-md-8">
+      <div class="col-lg-8">
         <div class="product-details mr-2">
           <div
             data-dismiss="modal"
@@ -68,7 +68,7 @@
                   "
                 />
 
-                <span class="d-block ml-5 font-weight-bold">$900</span>
+                <span class="d-block ml-5 font-weight-bold">${{cartItem?.product.price}}</span>
                 <i
                   (click)="deleteCartItem(cartItem)"
                   class="fa fa-trash ml-3 text-black-50"
@@ -78,7 +78,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-lg-4">
         <div class="payment-info">
           <div class="d-flex justify-content-between align-items-center">
             <span>Card details</span>
