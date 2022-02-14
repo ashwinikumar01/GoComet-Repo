@@ -1,6 +1,6 @@
-export const gender = [
-  { id: 1, gender: 'Men' },
-  { id: 2, gender: 'Women' },
-  { id: 3, gender: 'Boys' },
-  { id: 4, gender: 'Girls' },
+export const genders = [
+  { id: 1, name: 'Men' },
+  { id: 2, name: 'Women' },
+  { id: 3, name: 'Boys' },
+  { id: 4, name: 'Girls' },
 ];

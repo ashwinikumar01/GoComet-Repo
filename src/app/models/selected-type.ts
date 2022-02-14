@@ -1,11 +1,5 @@
 export class SelectedType {
-  type?: SelectedTypeValue[];
-  id?: number;
-  selectedType?: any;
+  type?: string;
+  itemName?: string;
 }
 
-export class SelectedTypeValue {
-  brand?: string;
-  gender?: string;
-  color?: string;
-}

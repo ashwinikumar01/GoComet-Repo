@@ -46,35 +46,63 @@
 
   <div class="row mt-5">
     <div class="col-md-3 col-lg-2 col d-md-block d-none align-items-center">
-      <h5>Filters</h5>
-      <div class="">
-        <label *ngFor="let brand of brands">
-          <input
-            id="a"
-            class="checkbox"
-            type="checkbox"
-            name="categories"
-            [value]="brand"
-            [checked]="true"
-            (change)="onCheckboxClicked()"
-          />
-          {{ brand.brand }}
-        </label>
+      <h4>Filters</h4>
+
+      <div>
+        <h6>Gender</h6>
+        <ul>
+          <li class="form-check" *ngFor="let gender of genders">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="list_name"
+              value="{{ gender.name }}"
+              (change)="onItemChange($event.target.value, null, 'gender')"
+            />
+            <label class="form-check-label">
+              {{ gender.name }}
+            </label>
+          </li>
+        </ul>
       </div>
 
-      <div class="">
-        <label *ngFor="let brand of brands">
+      <div class="mb-5">
+        <div class="form-check" *ngFor="let brand of brands">
           <input
             class="form-check-input"
-            type="radio"
-            [checked]="false"
-            (change)="onItemChange($event.target.value)"
+            [value]="brand.name"
+            (change)="
+              onItemChange($event.target.value, $event.target.checked, 'brand')
+            "
+            class="form-check-input"
+            type="checkbox"
+            id="flexCheckDefault"
           />
-          {{ brand.brand }}
-        </label>
+          <label class="form-check-label" for="flexCheckDefault">
+            {{ brand.name }}
+          </label>
+        </div>
       </div>
 
+      <div class="mb-5">
+        <div class="form-check" *ngFor="let color of colors">
+          <input
+            class="form-check-input"
+            value="{{ color.name }}"
+            (change)="
+              onItemChange($event.target.value, $event.target.checked, 'color')
+            "
+            class="form-check-input"
+            type="checkbox"
+            id="flexCheckDefault1"
+          />
+          <label class="form-check-label" for="flexCheckDefault1">
+            {{ color.name }}
+          </label>
+        </div>
+      </div>
     </div>
+
     <div class="col-md-9 col-lg-10">
       <div class="row">
         <div

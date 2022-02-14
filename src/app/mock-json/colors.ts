@@ -1,9 +1,9 @@
 export const colors = [
-  { id: 1, color: 'Black' },
-  { id: 2, color: 'Blue' },
-  { id: 3, color: 'Pink' },
-  { id: 4, color: 'Red' },
-  { id: 5, color: 'Lavander' },
-  { id: 6, color: 'Maroon' },
-  { id: 7, color: 'Brown' },
+  { id: 1, name: 'Black' },
+  { id: 2, name: 'Blue' },
+  { id: 3, name: 'Pink' },
+  { id: 4, name: 'Red' },
+  { id: 5, name: 'Lavander' },
+  { id: 6, name: 'Maroon' },
+  { id: 7, name: 'Brown' },
 ];

@@ -1,5 +1,5 @@
 .payment-info {
-  background: blue;
+  background: rgb(216, 216, 216);
   padding: 10px;
   border-radius: 6px;
   color: #fff;
@@ -48,7 +48,7 @@ label.radio span {
   padding: 1px 12px;
   border: 2px solid #ada9a9;
   display: inline-block;
-  color: #8f37aa;
+  color: black;
   border-radius: 3px;
   text-transform: uppercase;
   font-size: 11px;
@@ -57,18 +57,18 @@ label.radio span {
 
 label.radio input:checked + span {
   border-color: #fff;
-  background-color: blue;
+  background-color: white;
   color: #fff;
 }
 
 .credit-inputs {
-  background: rgb(102, 102, 221);
-  color: #fff !important;
-  border-color: rgb(102, 102, 221);
+  background: white;
+  color: black !important;
+  border-color: white;
 }
 
 .credit-inputs::placeholder {
-  color: #fff;
+  color: black;
   font-size: 13px;
 }
 
@@ -78,12 +78,11 @@ label.radio input:checked + span {
 }
 
 .form-control.credit-inputs:focus {
-  background: rgb(102, 102, 221);
-  border: rgb(102, 102, 221);
+  background: white;
 }
 
 .line {
-  border-bottom: 1px solid rgb(102, 102, 221);
+  border-bottom: 1px solid white;
 }
 
 .information span {
@@ -101,7 +100,7 @@ label.radio input:checked + span {
 }
 
 .spec {
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .fa-trash {
@@ -116,4 +115,23 @@ label.radio input:checked + span {
 
 input {
   box-shadow: none !important;
+}
+
+button.btn-block {
+  font-size: 0.9rem;
+  padding: 2%;
+  background-color: #ffffff;
+  border: 1.5px solid #ff3a37 !important;
+  color: #ff3a37 !important;
+  border-radius: 0.3rem;
+  font-weight: 600;
+
+  &:focus {
+    box-shadow: none !important;
+  }
+
+  &:hover {
+    background-color: #ff3a37 !important;
+    color: #ffffff !important;
+  }
 }
