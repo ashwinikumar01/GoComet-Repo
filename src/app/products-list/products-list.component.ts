@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService, WishlistService } from '../core';
+import { brands } from '../mock-json/brands';
 import { Product } from '../models/product';
 
 @Component({
@@ -15,10 +16,16 @@ export class ProductsListComponent implements OnInit {
   sortBy: any = 'recommended';
   sortDirection: any = 'asc';
 
+  brands = brands;
+
   constructor(
     private apiService: ProductsService,
     private wishlistService: WishlistService
   ) {}
+
+  onItemChange(value) {
+    console.log(' Value is : ', value);
+  }
 
   ngOnInit(): void {
     this._getProducts();

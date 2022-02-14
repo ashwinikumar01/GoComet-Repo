@@ -71,3 +71,13 @@ button.btn-block {
     margin: 0 70px 0 70px !important;
   }
 }
+
+@media screen and (max-width: 767.6px) {
+  .margin-top {
+    margin-top: 20px !important;
+  }
+
+  .padding-small-screen {
+    padding: 0 40px 0 40px !important;
+  }
+}

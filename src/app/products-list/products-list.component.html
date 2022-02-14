@@ -1,8 +1,8 @@
 <app-loader *ngIf="isLoading"></app-loader>
 
 <div *ngIf="!isLoading">
-  <div class="row mt-5">
-    <div class="col-md-3 offset-md-6">
+  <div class="row mt-5 padding-small-screen">
+    <div class="col-lg-3 offset-lg-6 col-md-4 offset-md-3">
       <input
         type="text"
         class="form-control"
@@ -12,7 +12,7 @@
         [(ngModel)]="searchText"
       />
     </div>
-    <div class="col-md-3">
+    <div class="col-lg-3 col-md-5 margin-top">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <label class="input-group-text" id="searchField" for="drpFilterBy">
@@ -45,7 +45,7 @@
   </div>
 
   <div class="row mt-5">
-    <div class="col-md-2 d-md-block d-none">
+    <div class="col-md-3 col-lg-2 col d-md-block d-none">
       <h5>Filters</h5>
       <label *ngFor="let brand of brands">
         <input
@@ -54,13 +54,24 @@
           type="checkbox"
           name="categories"
           [value]="brand"
+          [checked]="true"
           (change)="onCheckboxClicked()"
         />
-        {{ brand }}
+        {{ brand.brand }}
+      </label>
+
+      <label *ngFor="let brand of brands">
+        <input
+          class="form-check-input"
+          type="radio"
+          [checked]="false"
+          (change)="onItemChange($event.target.value)"
+        />
+        {{ brand.brand }}
       </label>
     </div>
 
-    <div class="col-md-10">
+    <div class="col-md-9 col-lg-10">
       <div class="row">
         <div
           class="col-lg-3 col-sm-6 mb-5"
@@ -101,3 +112,4 @@
     </div>
   </div>
 </div>
+<!-- [checked] -->
