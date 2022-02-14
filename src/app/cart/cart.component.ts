@@ -1,4 +1,5 @@
 import { AfterContentInit, Component, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { CartService, ProductsService, ToasterService } from '../core';
@@ -11,7 +12,7 @@ import { Product } from '../models/product';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
 })
-export class CartComponent implements OnInit, AfterContentInit {
+export class CartComponent implements OnInit {
   cartItemsDetailed: CartItemDetailed[] = [];
   cartCount = 0;
   inputAmount: number = 1;
@@ -21,16 +22,12 @@ export class CartComponent implements OnInit, AfterContentInit {
   constructor(
     private cartService: CartService,
     private productService: ProductsService,
-    private toasterService: ToasterService
+    private toasterService: ToasterService,
+    public activeModal: NgbActiveModal
   ) {}
 
   ngOnInit(): void {
     this._getCartDetails();
-  }
-
-  ngAfterContentInit() {
-    this.element = document.getElementById('hiddenBtn') as HTMLElement;
-    this.element.click();
   }
 
   private _getCartDetails() {
@@ -79,6 +76,10 @@ export class CartComponent implements OnInit, AfterContentInit {
   deleteCartItem(cartItem: CartItemDetailed) {
     this.cartService.deleteCartItem(cartItem.product.id, cartItem.sizeId);
     this.toasterService.showSuccessTopRight('Cart item has been deleted');
+  }
+
+  closeModal(close) {
+    this.activeModal.close(close);
   }
 
   ngOnDestroy(): void {

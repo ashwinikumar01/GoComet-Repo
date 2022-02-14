@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CartComponent } from 'src/app/cart/cart.component';
 import { CartService } from 'src/app/core';
 import { Cart, CartItem } from 'src/app/models/cart';
 
@@ -10,7 +12,10 @@ import { Cart, CartItem } from 'src/app/models/cart';
 export class NavbarComponent implements OnInit {
   cartCount: number;
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private modalService: NgbModal
+  ) {}
 
   ngOnInit(): void {
     this.cartService.cart$.subscribe((cart: Cart) => {
@@ -21,5 +26,14 @@ export class NavbarComponent implements OnInit {
           0
         ) ?? 0;
     });
+  }
+
+  triggerModal() {
+    this.modalService
+      .open(CartComponent, { scrollable: true, centered: true, size: 'xl' })
+      .result.then(
+        (res) => {},
+        (res) => {}
+      );
   }
 }

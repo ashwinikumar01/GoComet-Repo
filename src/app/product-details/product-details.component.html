@@ -85,7 +85,7 @@
         </div>
 
         <div class="row mx-auto mt-2">
-          <button class="btn buy btn-block" (click)="openCartModal()">
+          <button class="btn buy btn-block" (click)="triggerModal()">
             <i class="fa fa-shopping-bag"></i>
             GO TO BAG
           </button>
@@ -156,5 +156,3 @@
     </table>
   </div>
 </section>
-
-<app-cart *ngIf="modelOpen"></app-cart>

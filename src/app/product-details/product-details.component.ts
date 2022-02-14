@@ -5,6 +5,8 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Product } from '../models/product';
 import { CartItem } from '../models/cart';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CartComponent } from '../cart/cart.component';
 
 @Component({
   selector: 'app-product-details',
@@ -20,14 +22,14 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   selectedShirtSizeId: number;
   image: string;
   imagesList = [];
-  modelOpen = false;
-  @ViewChild('childRef') childRef;
+  closeModal: string;
 
   constructor(
     private productService: ProductsService,
     private cartService: CartService,
     private route: ActivatedRoute,
-    private toasterService: ToasterService
+    private toasterService: ToasterService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -74,9 +76,27 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     this.image = this.imagesList[index];
   }
 
-  openCartModal() {
-    this.modelOpen = true;
-    this.childRef.ngAfterContentInit();
+  triggerModal() {
+    this.modalService
+      .open(CartComponent, { scrollable: true, centered: true, size: 'xl' })
+      .result.then(
+        (res) => {
+          this.closeModal = `Closed with: ${res}`;
+        },
+        (res) => {
+          this.closeModal = `Dismissed ${this.getDismissReason(res)}`;
+        }
+      );
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 
   ngOnDestroy(): void {

@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { ProductDetailsComponent } from './product-details.component';
 import { ProductDetailsRoutingModule } from './product-details-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { CartModule } from '../cart/cart.module';
+import { CartComponent } from '../cart/cart.component';
+
 @NgModule({
-  declarations: [ProductDetailsComponent],
-  imports: [CommonModule, ProductDetailsRoutingModule, SharedModule, CartModule],
+  declarations: [ProductDetailsComponent, CartComponent],
+  imports: [CommonModule, ProductDetailsRoutingModule, SharedModule],
 })
 export class ProductDetailsModule {}
