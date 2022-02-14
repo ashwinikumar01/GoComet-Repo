@@ -42,3 +42,32 @@
 select {
   cursor: pointer;
 }
+
+button {
+  font-size: 0.9rem;
+  padding: 2%;
+  background-color: #ffffff;
+  border: 1.5px solid #ff3a37 !important;
+  color: #ff3a37 !important;
+  border-radius: 0.3rem;
+  font-weight: 600;
+
+  &:focus {
+    box-shadow: none !important;
+  }
+
+  &:hover {
+    background-color: #ff3a37 !important;
+    color: #ffffff !important;
+  }
+}
+
+.card {
+  @media only screen and (max-width: 453.6px) {
+    margin: 0 50px 0 50px !important;
+  }
+
+  @media only screen and (min-width: 454px) and (max-width: 575.6px) {
+    margin: 0 70px 0 70px !important;
+  }
+}

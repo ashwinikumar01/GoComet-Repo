@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from './pipes/filter.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { ToastrModule } from 'ngx-toastr';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { ToastrModule } from 'ngx-toastr';
     HomeComponent,
     ProductsListComponent,
     FilterPipe,
-    SortPipe
+    SortPipe,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +31,7 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     SharedModule,
     ToastrModule.forRoot(),
+    NgbModule,
   ],
   bootstrap: [AppComponent],
 })

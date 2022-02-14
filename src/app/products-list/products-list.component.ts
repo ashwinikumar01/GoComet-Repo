@@ -8,13 +8,12 @@ import { Product } from '../models/product';
   styleUrls: ['./products-list.component.scss'],
 })
 export class ProductsListComponent implements OnInit {
-  products: Product[] = [];
+  selectedDataToDisplay: Product[] = [];
+  selectedFilteredData: any[] = [];
   isLoading = false;
   searchText: string = '';
   sortBy: any = 'recommended';
   sortDirection: any = 'asc';
-
-  // brand = '';
 
   constructor(
     private apiService: ProductsService,
@@ -29,11 +28,9 @@ export class ProductsListComponent implements OnInit {
     this.isLoading = true;
     this.apiService.getProducts().subscribe((response: any) => {
       this.isLoading = false;
-      this.products = response;
+      this.selectedDataToDisplay = response;
     });
   }
-
-  onCheckboxClicked() {}
 
   _addToWishlist(productId: number) {
     this.wishlistService.setToWishlist({
@@ -42,7 +39,9 @@ export class ProductsListComponent implements OnInit {
     });
   }
 
-  _removeFromWishlist(productId: number) {
-    this.wishlistService.removeWishlistItem(productId);
-  }
+  onBrandChange() {}
+
+  onColorChange() {}
+
+  onGenderChange() {}
 }

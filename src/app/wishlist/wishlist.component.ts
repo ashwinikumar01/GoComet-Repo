@@ -1,7 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { ProductsService, ToasterService, WishlistService } from '../core';
+import {
+  CartService,
+  ProductsService,
+  ToasterService,
+  WishlistService,
+} from '../core';
+import { CartItem } from '../models/cart';
 import { Product } from '../models/product';
 import { WishlistItem } from '../models/wishlist';
 import { WishlistItemDetailed } from '../models/wishlist-item-detailed';
@@ -14,11 +21,16 @@ import { WishlistItemDetailed } from '../models/wishlist-item-detailed';
 export class WishlistComponent implements OnInit, OnDestroy {
   wishlistItemsDetailed: WishlistItemDetailed[] = [];
   endSubs$: Subject<any> = new Subject();
+  selectedShirtSizeId: any;
+  selectedShirtSize: any;
+  closeModal: string;
 
   constructor(
     private wishlistService: WishlistService,
     private productService: ProductsService,
-    private toasterService: ToasterService
+    private toasterService: ToasterService,
+    private cartService: CartService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +46,8 @@ export class WishlistComponent implements OnInit, OnDestroy {
           this.productService
             .getProduct(wishlistItem.id)
             .subscribe((responseProduct: Product) => {
+              this.selectedShirtSize = responseProduct.shirtSize[0].size;
+              this.selectedShirtSizeId = responseProduct.shirtSize[0].sizeId;
               this.wishlistItemsDetailed.push({
                 product: responseProduct,
                 isLiked: wishlistItem.isLiked,
@@ -43,11 +57,48 @@ export class WishlistComponent implements OnInit, OnDestroy {
       });
   }
 
+  getSelectedShirtSize(product: Product, index: number) {
+    this.selectedShirtSizeId = product.shirtSize[index].sizeId;
+    this.selectedShirtSize = product.shirtSize[index].size;
+  }
+
+  addToCart(wishlistItem: WishlistItemDetailed): void {
+    const cartItem: CartItem = {
+      id: wishlistItem.product.id,
+      quantity: 1,
+      sizeId: this.selectedShirtSizeId,
+    };
+
+    this.cartService.setCartItem(cartItem);
+    this.toasterService.showSuccessTopRight('Item Added to Cart');
+  }
+
   deleteWishlistItem(wishlistItem: WishlistItemDetailed) {
     this.wishlistService.removeWishlistItem(wishlistItem.product.id);
     this.toasterService.showSuccessTopRight(
       'Item has been removed from wishlist'
     );
+  }
+
+  triggerModal(content) {
+    this.modalService.open(content, { centered: true }).result.then(
+      (res) => {
+        this.closeModal = `Closed with: ${res}`;
+      },
+      (res) => {
+        this.closeModal = `Dismissed ${this.getDismissReason(res)}`;
+      }
+    );
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 
   ngOnDestroy(): void {
